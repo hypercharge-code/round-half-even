@@ -2,6 +2,10 @@ const isEven = d => d % 2 === 0;
 
 const roundHalfEven = (num, numDecimals = 2) => {
   if (typeof num !== 'number') throw new Error('Unrecognised format');
+  if (num < 0) {
+    const r = Math.pow(10, numDecimals);
+    return Math.round(num * r) / r;
+  }
   const strNum = `${num}`.replace(/0+$/, '');
   const decimalIndex = strNum.indexOf('.');
   if (decimalIndex < 0) return num;
